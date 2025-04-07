@@ -25,6 +25,160 @@
 				text-align: center;
 				margin: 2em 0;
 			}
+			.project-thumbnail {
+				width: 100%;
+				max-width: 150px;
+				height: auto;
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				margin: 0 auto;
+				display: block;
+			}
+			.project-thumbnail:hover {
+				transform: scale(1.02);
+				box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+			}
+			.project-card {
+				padding: 1em;
+				background: #ffffff;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+				margin: 0.8em;
+				text-align: center;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				flex: 1 1 250px;
+				max-width: 280px;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			.project-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+			}
+			.project-card:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 4px;
+				background: linear-gradient(90deg, #4a90e2, #50c9c3);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.3s ease;
+			}
+			.project-card:hover:before {
+				transform: scaleX(1);
+			}
+			.section-header {
+				text-align: left;
+				margin: 2em 0 1em 2em;
+				padding: 0;
+				position: relative;
+			}
+			.section-header h2 {
+				font-size: 2em;
+				margin-bottom: 0.5em;
+				color: #2c3e50;
+				position: relative;
+				display: inline-block;
+				font-weight: 600;
+			}
+			.section-header h2:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -0.2em;
+				width: 60px;
+				height: 4px;
+				background: linear-gradient(90deg, #4a90e2, #50c9c3);
+				border-radius: 2px;
+				transform-origin: left;
+				animation: underlineGrow 0.5s ease forwards;
+			}
+			@keyframes underlineGrow {
+				from { transform: scaleX(0); }
+				to { transform: scaleX(1); }
+			}
+			.section-description {
+				font-size: 1.1em;
+				color: #555;
+				margin: 0.5em 0 1.5em 0;
+				max-width: 800px;
+				line-height: 1.6;
+				opacity: 0.9;
+			}
+			.projects-grid {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				gap: 1.5em;
+				padding: 0 2em;
+				margin-top: 0;
+			}
+			.project-content {
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			.project-description {
+				margin: 0.8em 0;
+				font-size: 0.9em;
+				line-height: 1.4;
+				color: #444;
+			}
+			.project-card header h2 {
+				font-size: 1.2em;
+				margin-bottom: 0.4em;
+				color: #2c3e50;
+			}
+			.project-card .button {
+				padding: 0.5em 1em;
+				font-size: 0.9em;
+				background: none;
+				color: inherit;
+				border-radius: 0;
+				transition: all 0.3s ease;
+			}
+			.project-card .button:hover {
+				background: none;
+				transform: translateY(-2px);
+			}
+			.tech-stack {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5em;
+				margin: 0.8em 0;
+			}
+			.tech-tag {
+				background: #f0f7ff;
+				padding: 0.3em 0.8em;
+				border-radius: 4px;
+				font-size: 0.75em;
+				color: #4a90e2;
+				border: 1px solid #e0e9ff;
+				transition: all 0.2s ease;
+			}
+			.tech-tag:hover {
+				background: #e0e9ff;
+				transform: translateY(-1px);
+			}
+			.button-container {
+				display: flex;
+				justify-content: center;
+				gap: 1.5em;
+				margin: 2em 0;
+			}
+			.button-container .button {
+				min-width: 150px;
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -71,36 +225,99 @@
 									</a></h2>
 									<p>Results-driven Data Professional with expertise in A/B testing, trend analysis, SQL, Python, and BI reporting. Proven ability to optimize data pipelines, develop real-time dashboards, and conduct statistical modeling to drive business decisions. Experienced in data-driven storytelling, passionate about leveraging AI to deliver faster insights in a world that is shifting at an unimaginable pace.</p>
 								</header>
-								<ul class="actions special">
-									<li style="text-align: center; display: block; margin: 2em 0;"><a href="assets/resume/Sanya_Setia_Resume.pdf" class="button icon solid fa-download" target="_blank">View Resume</a></li>
-								</ul>
+								<div class="button-container">
+									<a href="assets/resume/Sanya_Setia_Resume.pdf" class="button icon solid fa-download" target="_blank">View Resume</a>
+									<a href="https://www.linkedin.com/in/sanya-setia/" class="button icon brands fa-linkedin" target="_blank">LinkedIn</a>
+									<a href="mailto:sanyasetia07@gmail.com" class="button icon solid fa-envelope">Email Me</a>
+									<button onclick="copyPhoneNumber()" class="button icon solid fa-phone" title="Click to copy phone number">Copy Phone</button>
+								</div>
+								<script>
+									function copyPhoneNumber() {
+										const phoneNumber = '+447826988866';
+										navigator.clipboard.writeText(phoneNumber).then(() => {
+											const button = document.querySelector('button[title="Click to copy phone number"]');
+											const originalText = button.innerHTML;
+											button.innerHTML = 'Copied!';
+											setTimeout(() => {
+												button.innerHTML = originalText;
+											}, 2000);
+										});
+									}
+								</script>
 							</article>
 
 						<!-- Posts -->
-							<section id="projects" class="posts">
-								<article>
-									<header>
-										<h2><a href="#">NLP:Topic Modeling <br />
-										In a real-life concept</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>Applied BERTopic to Google & Trustpilot reviews, Ran Sentiment Analysis on Negative Reviews to generate recommendations for specific locations where the gym wasn't doing well. This helped the company focus on improving their services.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/sanya-setia/topic-project" class="button">View on GitHub</a></li>
-									</ul>
+							<div class="section-header">
+								<h2>Stakeholder Projects</h2>
+								<div class="section-description">
+									Real-world projects developed in collaboration with stakeholders, focusing on solving complex business problems through data-driven solutions.
+								</div>
+							</div>
+							<section id="projects" class="projects-grid">
+								<article class="project-card">
+									<div class="project-content">
+										<header>
+											<h2><a href="#">NLP:Topic Modeling <br />
+											In a real-life concept</a></h2>
+										</header>
+										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="NLP Topic Modeling Project" class="project-thumbnail" /></a>
+										<div class="project-description">
+											<p>Applied BERTopic to Google & Trustpilot reviews, Ran Sentiment Analysis on Negative Reviews to generate recommendations for specific locations where the gym wasn't doing well.</p>
+										</div>
+										<div class="tech-stack">
+											<span class="tech-tag">Python</span>
+											<span class="tech-tag">BERTopic</span>
+											<span class="tech-tag">NLP</span>
+											<span class="tech-tag">Sentiment Analysis</span>
+										</div>
+										<ul class="actions special">
+											<li><a href="https://github.com/sanya-setia/topic-project" class="button">View on GitHub</a></li>
+										</ul>
+									</div>
 								</article>
-								<article>
-									<header>
-										<h2><a href="#">Anomaly Detection<br />
-										The Ship Engine Problem</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>Built an outlier detection system for ship engines using IQR, One-Class SVM, and Isolation Forest; resulting in 
-										Early fault detection, reducing maintenance costs
-										</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/sanya-setia" class="button">View on GitHub</a></li>
-									</ul>
+								<article class="project-card">
+									<div class="project-content">
+										<header>
+											<h2><a href="#">Anomaly Detection<br />
+											The Ship Engine Problem</a></h2>
+										</header>
+										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="Anomaly Detection Project" class="project-thumbnail" /></a>
+										<div class="project-description">
+											<p>Built an outlier detection system for ship engines using IQR, One-Class SVM, and Isolation Forest; resulting in early fault detection and reduced maintenance costs.</p>
+										</div>
+										<div class="tech-stack">
+											<span class="tech-tag">Python</span>
+											<span class="tech-tag">Machine Learning</span>
+											<span class="tech-tag">IQR</span>
+											<span class="tech-tag">SVM</span>
+											<span class="tech-tag">Isolation Forest</span>
+										</div>
+										<ul class="actions special">
+											<li><a href="https://github.com/sanya-setia" class="button">View on GitHub</a></li>
+										</ul>
+									</div>
+								</article>
+								<article class="project-card">
+									<div class="project-content">
+										<header>
+											<h2><a href="#">Company Metrics Dashboard<br />
+											Data Analytics & Visualization</a></h2>
+										</header>
+										<a href="#" class="image fit"><img src="images/company-metrics-dashboard.png" alt="Company Metrics Dashboard showing KPIs and trends" class="project-thumbnail" /></a>
+										<div class="project-description">
+											<p>Developed a comprehensive metrics dashboard using Redshift and DynamoDB for data storage, with PostgreSQL for complex queries and data analysis, providing real-time business insights.</p>
+										</div>
+										<div class="tech-stack">
+											<span class="tech-tag">Redshift</span>
+											<span class="tech-tag">DynamoDB</span>
+											<span class="tech-tag">PostgreSQL</span>
+											<span class="tech-tag">Data Analytics</span>
+											<span class="tech-tag">SQL</span>
+										</div>
+										<ul class="actions special">
+											<li><a href="https://github.com/sanya-setia/company-metrics-dashboard" class="button" target="_blank">View on GitHub</a></li>
+										</ul>
+									</div>
 								</article>
 							</section>
 
